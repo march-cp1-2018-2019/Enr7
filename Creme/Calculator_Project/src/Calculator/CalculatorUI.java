@@ -12,6 +12,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/* TEACHER NOTES: Excellent Job Jeremiah.  I have just a couple notes 
+* You have defined 2 classes in one Java file.  While there are reasons and situations to do this I would not in this case.
+* Remember we want to keep the business logic separate from the user interface.  If Calculator is an inner class as you have here then
+* no other user interface or code can reuse it.  Therefore, i would create a seperate java file Calculator.java to define this class.
+*/
+
 class Calculator {
 	boolean autoRoundOn = true;
 	double operationA = 0;
@@ -22,6 +28,7 @@ class Calculator {
 	String operation = "";
 }
 
+// TEACHER NOTES: I like your interface
 public class CalculatorUI extends JFrame {
 	JTextField text = new JTextField("");
 	JButton one = new JButton(" 1 ");
@@ -46,6 +53,8 @@ public class CalculatorUI extends JFrame {
 
 	Calculator calc = new Calculator();
 
+	// TEACHER NOTES: not sure why this is in here.  I think it was left in from a previous assignment but thats ok.
+	// You probably want a constructor for CalculatorUI instead.  But it would still need to call InitComponent()
 	public void FutureValueFrame() {
 		InitComponent();
 
@@ -57,6 +66,8 @@ public class CalculatorUI extends JFrame {
 
 	}
 
+	// remember method names should start with a lowercase letter.  Only constructors, classes, and constants should start with 
+	// an upper case letter.
 	private void InitComponent() {
 
 		setTitle("Calculator");
@@ -139,6 +150,12 @@ public class CalculatorUI extends JFrame {
 		setVisible(true);
 	}
 
+	/* TEACHER NOTES: I like your use of inner classes here for ActionListeners.  This is an appropriate use of inner classes
+	* remember you also have an option to use Lamda expressions instead which look a lot like regular methods.
+	* Did you notice anything repeditive in your zero through nine ButtonClicked methods?  Whenever you have methods that resemble
+	* each other or you copy/paste a lot you should think if there is a way you can write ONE method to do all 10 things,
+	* less lines of code that way.
+	*/
 	class oneButtonClicked implements ActionListener {
 		public void actionPerformed(ActionEvent a) {
 			if (calc.aInUse) {
@@ -559,6 +576,8 @@ public class CalculatorUI extends JFrame {
 	class equalsButtonClicked implements ActionListener {
 		public void actionPerformed(ActionEvent a) {
 			try {
+				// TEACHER NOTES: when comparing strings use equals instead of ==
+				// calc.equals("+)
 				if (calc.operation == "+") {
 					calc.operationA = calc.operationA + calc.operationB;
 				} else if (calc.operation == "-") {

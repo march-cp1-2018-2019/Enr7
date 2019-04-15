@@ -179,12 +179,24 @@ public class CalculatorUI extends JFrame{
 
 	private Object goButtonClicked() {
 		//not for teacher: for some reason it won't calculate
+		// TEACHER NOTES: when your code doesn't run as you expect
+		// you should add println statements to your console to see
+		// what is happening in your code.
 		
 		String curText = this.textField.getText();
 		this.textField.setText(curText + " = "); 
 		
+		// TEACHER NOTES: for example, add one here to see what the value
+		// of the type variable is for this if condition:
+		System.out.println("type = " + type);
+		
 		if (type.equals(ADD)) {
 			calc.add();
+			//TEACHER NOTES: you are calling add() but not doing anything
+			// with the value that is returned from the add method
+			double newValue = calc.add();
+			this.textField.setText(curText + " = "+ newValue);
+			// you can also run this in debug mode to see if num1 and num2 have the correct value
 		} else if(type.equals(SUB)){
 			calc.sub();
 		} else if(type.equals(DIV)) {
